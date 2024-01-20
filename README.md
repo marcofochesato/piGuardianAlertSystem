@@ -35,7 +35,7 @@ This Python scripts are designed to monitor the state of GPIO pins on a Raspberr
     Add the following line to run the script every minute:
 
     ```
-    * * * * * cd /home/pi/PiGuardianAlertSystem; python pin_recorder.py
+    * * * * * cd /home/pi/piGuardianAlertSystem; python pin_recorder.py
     ```
 
 3. **Start the web server on boot:**
