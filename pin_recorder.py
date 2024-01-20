@@ -27,7 +27,8 @@ def setup_database():
 
 def read_pin_state(pin, cursor):
     # print(pin['pin_number'])
-    GPIO.setup(pin['pin_number'], GPIO.IN)
+    # GPIO.setup(pin['pin_number'], GPIO.IN)
+    GPIO.setup(pin['pin_number'], GPIO.IN, pull_up_down=GPIO.PUD_UP)
     pin_state = GPIO.input(pin['pin_number'])
 
     # Fetch the most recent state from the database
@@ -71,6 +72,7 @@ try:
         # Iterate through pins
         for pin in pins_data:
             pin_state, previous_state = read_pin_state(pin, cursor)
+            time.sleep(0.1)
             print(pin_state, previous_state)
 
             # If there's no previous state or it's different, insert a new record
