@@ -26,6 +26,7 @@ def setup_database():
 
 
 def read_pin_state(pin, cursor):
+    print(pin['pin_number'])
     GPIO.setup(pin['pin_number'], GPIO.IN)
     pin_state = GPIO.input(pin['pin_number'])
 
@@ -70,7 +71,7 @@ try:
         # Iterate through pins
         for pin in pins_data:
             pin_state, previous_state = read_pin_state(pin, cursor)
-            print(pin['pin_number'], pin_state, previous_state)
+            print(pin_state, previous_state)
 
             # If there's no previous state or it's different, insert a new record
             if not previous_state or previous_state[0] != pin_state:
