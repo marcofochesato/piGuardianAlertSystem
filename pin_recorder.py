@@ -50,8 +50,8 @@ def insert_record(pin, pin_state, timestamp, cursor, conn):
     ''', (pin['pin_number'], pin['description'], pin_state, timestamp))
     conn.commit()
 
-    print(
-        f"Inserted record: Pin {pin['pin_number']}, Description: {pin['description']}, State: {pin_state}, Created At: {timestamp}")
+    # print(
+    #     f"Inserted record: Pin {pin['pin_number']}, Description: {pin['description']}, State: {pin_state}, Created At: {timestamp}")
 
 
 # Open the configuration file
