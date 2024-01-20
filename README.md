@@ -10,12 +10,6 @@ This Python scripts are designed to monitor the state of GPIO pins on a Raspberr
 - Raspberry Pi with GPIO pins
 - Python 3 installed on the Raspberry Pi
 - pins.json file containing pin configurations:
-```json
-   [
-    {"pin_number": 24, "description": "BRUCIATORE"},
-    {"pin_number": 23, "description": "CALDAIA"}
-   ]
-```
 - other
 
 ## Installation
@@ -26,32 +20,37 @@ This Python scripts are designed to monitor the state of GPIO pins on a Raspberr
     git clone https://github.com/marcofochesato/piGuardianAlertSystem.git
     ```
 
-2. **Open crontab for editing:**
 
-    ```bash
-    crontab -e
-    ```
+3. **Start services on boot:**
 
-    Add the following line to run the script every minute:
+   There are many ways to start scripts at boot.
 
-    ```
-    * * * * * cd /home/pi/piGuardianAlertSystem; python pin_recorder.py
-    ```
+   * Open the autostart file for editing:
 
-3. **Start the web server on boot:**
-
-   Open the autostart file for editing:
-
-   ```bash
-   sudo nano /etc/xdg/lxsession/LXDE-pi/autostart
+      ```bash
+      sudo nano /etc/xdg/lxsession/LXDE-pi/autostart 
+      ```
+      
+      - Add the following lines:
+      
+      ```bash
+      @xset s off
+      @xset -dpms
+      @xset s noblank
+      @cd /home/pi/piGuardianAlertSystem;python3 pin_recorder.py
+      @cd /home/pi/piGuardianAlertSystem;python3 web-server.py
+       ```
    
-   ```
+   * Open /etc/profile
 
-   Add the following lines:
-    ```
-   @xset s off
-   @xset -dpms
-   @xset s noblank
-   @cd /home/pi/PiGuardianAlertSystem;python pin_recorder.py
-
-    ```
+        ```bash
+        sudo nano /etc/profile
+        ```
+      
+        - Add the following lines:
+      
+        ```bash
+        cd /home/pi/piGuardianAlertSystem
+        python3 pin_recorder.py
+        python3 web-server.py
+         ```
