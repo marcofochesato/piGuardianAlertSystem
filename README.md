@@ -10,6 +10,12 @@ This Python scripts are designed to monitor the state of GPIO pins on a Raspberr
 - Raspberry Pi with GPIO pins
 - Python 3 installed on the Raspberry Pi
 - pins.json file containing pin configurations:
+    ```json
+    [
+    {"pin_number": 24, "description": "BRUCIATORE"},
+    {"pin_number": 23, "description": "CALDAIA"}
+   ]
+
 - other
 
 ## Installation
@@ -51,6 +57,5 @@ This Python scripts are designed to monitor the state of GPIO pins on a Raspberr
       
         ```bash
         cd /home/pi/piGuardianAlertSystem
-        python3 pin_recorder.py
-        python3 web-server.py
-         ```
+        python3 pin_recorder.py &
+        nohup python3 web-server.py > web-server.log 2>&1 &
