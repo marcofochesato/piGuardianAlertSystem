@@ -62,13 +62,22 @@ GPIO.setmode(GPIO.BOARD)
 
 conn, cursor = setup_database()
 
-# Get current timestamp
-timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+try:
+    while True:
+        # Get current timestamp
+        timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
-# Iterate through pins
-for pin in pins_data:
-    pin_state, previous_state = read_pin_state(pin, cursor)
+        # Iterate through pins
+        for pin in pins_data:
+            pin_state, previous_state = read_pin_state(pin, cursor)
 
-    # If there's no previous state or it's different, insert a new record
-    if not previous_state or previous_state[0] != pin_state:
-        insert_record(pin, pin_state, timestamp, cursor, conn)
+            # If there's no previous state or it's different, insert a new record
+            if not previous_state or previous_state[0] != pin_state:
+                insert_record(pin, pin_state, timestamp, cursor, conn)
+
+        # Wait for one second
+        time.sleep(1)
+
+except KeyboardInterrupt:
+    GPIO.cleanup()
+    conn.close()
