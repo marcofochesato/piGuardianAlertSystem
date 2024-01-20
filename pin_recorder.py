@@ -4,6 +4,7 @@ import sqlite3
 from datetime import datetime
 import time
 
+
 def setup_database():
     # Connect to SQLite database
     conn = sqlite3.connect('pin_records.db')
@@ -23,6 +24,7 @@ def setup_database():
 
     return conn, cursor
 
+
 def read_pin_state(pin, cursor):
     GPIO.setup(pin['pin_number'], GPIO.IN)
     pin_state = GPIO.input(pin['pin_number'])
@@ -39,12 +41,16 @@ def read_pin_state(pin, cursor):
 
     return pin_state, previous_state
 
+
 def insert_record(pin, pin_state, timestamp, cursor, conn):
     cursor.execute('''
         INSERT INTO pin_records (pin_number, pin_description, pin_state, created_at)
         VALUES (?, ?, ?, ?)
     ''', (pin['pin_number'], pin['description'], pin_state, timestamp))
     conn.commit()
+
+    print(
+        f"Inserted record: Pin {pin['pin_number']}, Description: {pin['description']}, State: {pin_state}, Created At: {timestamp}")
 
 
 # Open the configuration file
@@ -66,7 +72,3 @@ for pin in pins_data:
     # If there's no previous state or it's different, insert a new record
     if not previous_state or previous_state[0] != pin_state:
         insert_record(pin, pin_state, timestamp, cursor, conn)
-
-
-
-
