@@ -26,7 +26,7 @@ def setup_database():
 
 
 def read_pin_state(pin, cursor):
-    print(pin['pin_number'])
+    # print(pin['pin_number'])
     GPIO.setup(pin['pin_number'], GPIO.IN)
     pin_state = GPIO.input(pin['pin_number'])
 
