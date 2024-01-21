@@ -19,7 +19,7 @@ def check_and_send_email(cursor, conn):
         # Extract record information
         record_id, pin_number, pin_description, pin_state, created_at = record
 
-        # Example email content
+        # email content
         email_subject = f"Alert: Pin {pin_number} State Change"
         email_message = f"Pin {pin_number} ({pin_description}) changed state to {pin_state} at {created_at}."
 

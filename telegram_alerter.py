@@ -1,4 +1,3 @@
-# check_and_send_telegram.py
 import json
 import sqlite3
 from datetime import datetime, timedelta
@@ -7,7 +6,7 @@ from common_services import get_internal_ip
 
 
 def check_and_send_telegram(cursor, conn):
-    # Fetch record that needs Telegram alerts
+    # Fetch record that needs Telegram alert
     cursor.execute('''
         SELECT id, pin_number, pin_description, pin_state, created_at
         FROM pin_records

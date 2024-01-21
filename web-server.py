@@ -4,6 +4,7 @@ import sqlite3
 
 PORT = 8000
 
+
 class PinRecordsHandler(http.server.SimpleHTTPRequestHandler):
     def do_GET(self):
         if self.path == '/':
@@ -110,6 +111,7 @@ class PinRecordsHandler(http.server.SimpleHTTPRequestHandler):
         """
 
         return records_html
+
 
 # Start the web server
 with socketserver.TCPServer(("", PORT), PinRecordsHandler) as httpd:
