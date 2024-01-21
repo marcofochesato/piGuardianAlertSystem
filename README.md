@@ -11,7 +11,7 @@ This Python scripts are designed to monitor the state of GPIO pins on a Raspberr
 
 - Raspberry Pi with GPIO pins
 - Python 3 installed on the Raspberry Pi
-- email_config.json file containing email configurations:
+- pins.json file containing email configurations:
     ```json
     [
     {"pin_number": 24, "description": "BRUCIATORE"},
@@ -78,7 +78,7 @@ This Python scripts are designed to monitor the state of GPIO pins on a Raspberr
         python pin_recorder.py &
         nohup python web-server.py > web-server.log 2>&1 &
 
-3. **Send alert via email:**
+3. **Send alert via email and telegram:**
 
    Open the crontab file for editing:
 
