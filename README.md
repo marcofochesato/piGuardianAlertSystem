@@ -25,6 +25,13 @@ This Python scripts are designed to monitor the state of GPIO pins on a Raspberr
   "smtp_port": 587,
   "recipients": ["recipient1@example.com", "recipient2@example.com"]
   }
+  
+- telegram_config.json file containing telegram configurations (assuming you are able to create a TelegramBot):
+    ```json
+    {
+  "bot_token": "your_telegram_bot_token",
+  "chat_ids": [123456789, 987654321]
+  }
 
 
 ## Installation
