@@ -87,6 +87,7 @@ This Python scripts are designed to monitor the state of GPIO pins on a Raspberr
     Add the following lines:
       
     ```
-   cd /home/pi/piGuardianAlertSystem;python3 email_alerter.py
+   cd /home/pi/piGuardianAlertSystem;python email_alerter.py
+   cd /home/pi/piGuardianAlertSystem;python telegram_alerter.py
 
 
