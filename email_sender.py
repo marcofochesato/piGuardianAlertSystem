@@ -1,7 +1,8 @@
 import json
 import smtplib
-from email.mime.text import MIMEText
+import socket
 from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 
 
 def send_email(subject, message):
@@ -16,6 +17,12 @@ def send_email(subject, message):
         smtp_server = email_config['smtp_server']
         smtp_port = email_config['smtp_port']
         recipients = email_config['recipients']
+
+        # Get the internal IP address
+        internal_ip = socket.gethostbyname(socket.gethostname())
+
+        # Append internal IP to the message
+        message += f"\n\nInternal IP Address: {internal_ip}"
 
         # Create the email content
         email_message = MIMEMultipart()
@@ -37,16 +44,3 @@ def send_email(subject, message):
     except Exception as e:
         print(f"Error sending email: {e}")
         return False
-
-
-# if __name__ == "__main__":
-#     # Example usage
-#     email_subject = "Test Email"
-#     email_message = "This is a test email."
-#
-#     success = send_email(email_subject, email_message)
-#
-#     if success:
-#         print("Email sent successfully.")
-#     else:
-#         print("Failed to send email.")
