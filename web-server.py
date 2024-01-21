@@ -40,10 +40,41 @@ class PinRecordsHandler(http.server.SimpleHTTPRequestHandler):
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>Pin Records</title>
+            <style>
+                body {
+                    font-family: 'Arial', sans-serif;
+                    margin: 20px;
+                }
+
+                h1 {
+                    text-align: center;
+                    color: #333;
+                }
+
+                table {
+                    width: 100%;
+                    border-collapse: collapse;
+                    margin-top: 20px;
+                }
+
+                th, td {
+                    border: 1px solid #ddd;
+                    padding: 10px;
+                    text-align: left;
+                }
+
+                th {
+                    background-color: #f2f2f2;
+                }
+
+                tr:hover {
+                    background-color: #f5f5f5;
+                }
+            </style>
         </head>
         <body>
             <h1>Pin Records</h1>
-            <table border="1">
+            <table>
                 <thead>
                     <tr>
                         <th>ID</th>
