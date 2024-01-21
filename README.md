@@ -1,6 +1,6 @@
 # GPIO Pin State Monitoring and Logging
 
-This Python scripts are designed to monitor the state of GPIO pins on a Raspberry Pi and:
+These Python scripts are designed to monitor the state of GPIO pins on a Raspberry Pi and:
 - Log changes to a SQLite database
 - Show changes in a simple web server listening on port 8000
 - send email alert
