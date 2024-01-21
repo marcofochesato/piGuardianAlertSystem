@@ -10,7 +10,7 @@ This Python scripts are designed to monitor the state of GPIO pins on a Raspberr
 ## Prerequisites
 
 - Raspberry Pi with GPIO pins
-- Python 3 installed on the Raspberry Pi
+- Python 3, Telepot installed on the Raspberry Pi
 - pins.json file containing email configurations:
     ```json
     [
