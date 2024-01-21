@@ -36,7 +36,7 @@ This Python scripts are designed to monitor the state of GPIO pins on a Raspberr
     ```
 
 
-3. **Start services on boot:**
+2. **Start services on boot:**
 
    There are many ways to start scripts at boot.
 
@@ -68,3 +68,18 @@ This Python scripts are designed to monitor the state of GPIO pins on a Raspberr
         cd /home/pi/piGuardianAlertSystem
         python3 pin_recorder.py &
         nohup python3 web-server.py > web-server.log 2>&1 &
+
+3. **Send alert via email:**
+
+   Open the crontab file for editing:
+
+    ```bash
+    crontab -e
+   ```
+
+    Add the following lines:
+      
+    ```
+   cd /home/pi/piGuardianAlertSystem;python3 email_alerter.py
+
+
