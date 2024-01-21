@@ -1,8 +1,9 @@
 import RPi.GPIO as GPIO
 import json
 import sqlite3
-from datetime import datetime
+from datetime import datetime, timedelta
 import time
+
 
 
 def setup_database():
@@ -17,6 +18,8 @@ def setup_database():
             pin_number INTEGER,
             pin_description TEXT,
             pin_state INTEGER,
+            sent_alert_by_email_at TEXT,
+            sent_alert_by_telegram_at TEXT,
             created_at TEXT
         )
     ''')
@@ -55,6 +58,18 @@ def insert_record(pin, pin_state, timestamp, cursor, conn):
     #     f"Inserted record: Pin {pin['pin_number']}, Description: {pin['description']}, State: {pin_state}, Created At: {timestamp}")
 
 
+def delete_old_records(cursor, conn):
+    # Calculate the date 30 days ago
+    thirty_days_ago = datetime.now() - timedelta(days=30)
+
+    # Delete records older than 30 days
+    cursor.execute('''
+        DELETE FROM pin_records
+        WHERE created_at < ?
+    ''', (thirty_days_ago.strftime('%Y-%m-%d %H:%M:%S'),))
+    conn.commit()
+
+
 # Open the configuration file
 with open('pins.json', 'r') as file:
     pins_data = json.load(file)
@@ -68,6 +83,9 @@ try:
     while True:
         # Get current timestamp
         timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+
+        # Delete old records
+        delete_old_records(cursor, conn)
 
         # Iterate through pins
         for pin in pins_data:
