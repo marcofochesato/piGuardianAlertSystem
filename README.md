@@ -59,8 +59,8 @@ This Python scripts are designed to monitor the state of GPIO pins on a Raspberr
       @xset s off
       @xset -dpms
       @xset s noblank
-      @cd /home/pi/piGuardianAlertSystem;python3 pin_recorder.py
-      @cd /home/pi/piGuardianAlertSystem;python3 web-server.py
+      @cd /home/pi/piGuardianAlertSystem;python pin_recorder.py
+      @cd /home/pi/piGuardianAlertSystem;python web-server.py
        ```
    
    * Open /etc/profile
@@ -73,8 +73,8 @@ This Python scripts are designed to monitor the state of GPIO pins on a Raspberr
       
         ```bash
         cd /home/pi/piGuardianAlertSystem
-        python3 pin_recorder.py &
-        nohup python3 web-server.py > web-server.log 2>&1 &
+        python pin_recorder.py &
+        nohup python web-server.py > web-server.log 2>&1 &
 
 3. **Send alert via email:**
 

@@ -1,6 +1,7 @@
 import json
 from telegram import Bot
-from telegram import ParseMode
+from telegram import constants
+
 from datetime import datetime, timedelta
 
 
@@ -9,7 +10,7 @@ def send_telegram_alert(bot_token, chat_ids, message):
 
     for chat_id in chat_ids:
         try:
-            bot.send_message(chat_id=chat_id, text=message, parse_mode=ParseMode.MARKDOWN)
+            bot.send_message(chat_id=chat_id, text=message, parse_mode=constants.ParseMode.MARKDOWN)
             print(f"Telegram alert sent to chat ID {chat_id}")
         except Exception as e:
             print(f"Error sending Telegram alert to chat ID {chat_id}: {e}")
