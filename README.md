@@ -9,14 +9,23 @@ This Python scripts are designed to monitor the state of GPIO pins on a Raspberr
 
 - Raspberry Pi with GPIO pins
 - Python 3 installed on the Raspberry Pi
-- pins.json file containing pin configurations:
+- email_config.json file containing email configurations:
     ```json
     [
     {"pin_number": 24, "description": "BRUCIATORE"},
     {"pin_number": 23, "description": "CALDAIA"}
    ]
 
-- other
+- email_config.json file containing email configurations:
+    ```json
+    {
+  "sender_email": "your_email@example.com",
+  "sender_password": "your_email_password",
+  "smtp_server": "smtp.your_email_provider.com",
+  "smtp_port": 587,
+  "recipients": ["recipient1@example.com", "recipient2@example.com"]
+  }
+
 
 ## Installation
 
