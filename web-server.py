@@ -50,6 +50,8 @@ class PinRecordsHandler(http.server.SimpleHTTPRequestHandler):
                         <th>Pin Number</th>
                         <th>Description</th>
                         <th>Pin State</th>
+                        <th>Sent Alert By Email At</th>
+                        <th>Sent Alert By Telegram At</th>
                         <th>Created At</th>
                     </tr>
                 </thead>
@@ -64,6 +66,8 @@ class PinRecordsHandler(http.server.SimpleHTTPRequestHandler):
                     <td>{record[2]}</td>
                     <td>{record[3]}</td>
                     <td>{record[4]}</td>
+                    <td>{record[5]}</td>
+                    <td>{record[6]}</td>
                 </tr>
             """
 
