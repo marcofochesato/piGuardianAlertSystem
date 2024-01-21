@@ -4,6 +4,17 @@ import socket
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
+def get_internal_ip():
+    # Create a UDP socket to an external server to determine the local IP address
+    with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
+        try:
+            # Doesn't have to be reachable
+            s.connect(('10.255.255.255', 1))
+            internal_ip = s.getsockname()[0]
+            return internal_ip
+        except Exception as e:
+            print(f"Error getting internal IP: {e}")
+            return None
 
 def send_email(subject, message):
     try:
@@ -19,10 +30,14 @@ def send_email(subject, message):
         recipients = email_config['recipients']
 
         # Get the internal IP address
-        internal_ip = socket.gethostbyname(socket.gethostname())
+        internal_ip = get_internal_ip()
 
-        # Append internal IP to the message
-        message += f"\n\nInternal IP Address: {internal_ip}"
+        if internal_ip:
+            # Message about reaching an internal web server
+            web_server_message = f"You can reach an internal web server at http://{internal_ip}:8000"
+
+            # Append internal IP and web server message to the message
+            message += f"\n\nInternal IP Address: {internal_ip}\n{web_server_message}"
 
         # Create the email content
         email_message = MIMEMultipart()
