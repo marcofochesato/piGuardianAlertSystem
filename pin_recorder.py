@@ -91,7 +91,7 @@ try:
         for pin in pins_data:
             pin_state, previous_state = read_pin_state(pin, cursor)
             time.sleep(0.1)
-            print(pin_state, previous_state)
+            # print(pin_state, previous_state)
 
             # If there's no previous state or it's different, insert a new record
             if not previous_state or previous_state[0] != pin_state:
