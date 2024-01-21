@@ -3,6 +3,7 @@ import json
 import sqlite3
 from datetime import datetime, timedelta
 from telegram_sender import start_telegram_service
+from email_sender import get_internal_ip
 
 
 def check_and_send_telegram(cursor, conn):
@@ -20,8 +21,12 @@ def check_and_send_telegram(cursor, conn):
         # Extract record information
         record_id, pin_number, pin_description, pin_state, created_at = record
 
-        # Example Telegram alert content
-        telegram_message = f"Alert: Pin {pin_number} State Change\nPin {pin_number} ({pin_description}) changed state to {pin_state} at {created_at}."
+        internal_ip = get_internal_ip()  # Use your utility function to get internal IP
+        telegram_message = (
+            f"Alert: Pin {pin_number} State Change\n"
+            f"Pin {pin_number} ({pin_description}) changed state to {pin_state} at {created_at}.\n"
+            f"You can reach an internal web server at {internal_ip}:8000."
+        )
 
         # Load Telegram configuration from JSON file
         with open('telegram_config.json', 'r') as file:
