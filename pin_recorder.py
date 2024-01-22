@@ -4,6 +4,24 @@ import sqlite3
 from datetime import datetime, timedelta
 import time
 
+from common_services import get_internal_ip
+from email_sender import send_email
+from telegram_sender import start_telegram_service
+
+
+def send_starting_service_message():
+    internal_ip = get_internal_ip()
+
+    email_subject = f"Start Pi Guardian Service"
+    message = f"Pi Guardian Service is started at: {internal_ip}"
+    send_email(email_subject, message)
+
+    with open('telegram_config.json', 'r') as file:
+        telegram_config = json.load(file)
+
+    telegram_service = start_telegram_service(telegram_config['bot_token'], telegram_config['chat_ids'])
+    telegram_service.send_alert(message)
+
 
 def setup_database():
     # Connect to SQLite database
@@ -72,6 +90,8 @@ with open('pins.json', 'r') as file:
 GPIO.setmode(GPIO.BOARD)
 
 conn, cursor = setup_database()
+
+send_starting_service_message()
 
 try:
     while True:
