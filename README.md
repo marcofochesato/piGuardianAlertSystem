@@ -21,6 +21,7 @@ These Python scripts are designed to monitor the state of GPIO pins on a Raspber
 - email_config.json file containing email configurations:
     ```json
     {
+  "sender_name": "the name show in the header",
   "sender_email": "your_email@example.com",
   "sender_password": "your_email_password",
   "smtp_server": "smtp.your_email_provider.com",

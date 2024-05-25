@@ -12,6 +12,7 @@ def send_email(subject, message):
             email_config = json.load(file)
 
         # Email configuration
+        sender_name = email_config['sender_name']
         sender_email = email_config['sender_email']
         sender_password = email_config['sender_password']
         smtp_server = email_config['smtp_server']
@@ -30,7 +31,7 @@ def send_email(subject, message):
 
         # Create the email content
         email_message = MIMEMultipart()
-        email_message['From'] = sender_email
+        email_message['From'] = f"{sender_name} <{sender_email}>"
         email_message['To'] = ', '.join(recipients)
         email_message['Subject'] = subject
 
