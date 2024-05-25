@@ -2,6 +2,7 @@ import json
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+
 from common_services import get_internal_ip
 
 
@@ -24,7 +25,7 @@ def send_email(subject, message):
 
         if internal_ip:
             # Message about reaching an internal web server
-            web_server_message = f"You can reach an internal web server at http://{internal_ip}:8000"
+            web_server_message = f"You can reach an internal web server (if activated) at http://{internal_ip}:8000"
 
             # Append internal IP and web server message to the message
             message += f"\n\nInternal IP Address: {internal_ip}\n{web_server_message}"
