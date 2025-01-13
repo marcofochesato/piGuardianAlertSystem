@@ -1,5 +1,4 @@
 import telepot
-from telepot.loop import MessageLoop
 
 
 class TelegramService:
@@ -17,10 +16,4 @@ class TelegramService:
 
 
 def start_telegram_service(bot_token, chat_ids):
-    telegram_service = TelegramService(bot_token, chat_ids)
-
-    # Set up the message loop to handle incoming messages
-    bot = telepot.Bot(bot_token)
-    MessageLoop(bot, lambda msg: None).run_as_thread()
-
-    return telegram_service
+    return TelegramService(bot_token, chat_ids)
